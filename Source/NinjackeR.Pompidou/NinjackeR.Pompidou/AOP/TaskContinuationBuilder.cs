@@ -1,18 +1,17 @@
+using NinjackeR.Pompidou.Reflection;
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using NinjackeR.Pompidou.Reflection;
 
 namespace NinjackeR.Pompidou.AOP
 {
     public class TaskContinuationBuilder
     {
-        public object GetTaskContinuationFromMethodInvocation(object taskObject, Action<Exception> exceptionHandler)
+        public object GetTaskContinuationFromMethodInvocation(IMethodInvocation methodInvocation, Action<Exception> exceptionHandler)
         {
             object taskContinuation = null;
 
-            var taskType = taskObject.GetType();
+            var taskType = methodInvocation.ReturnValue.GetType();
             /*
              * act on this method only if it is generic and of type Task<TResult> for some TResult
              */
@@ -41,11 +40,11 @@ namespace NinjackeR.Pompidou.AOP
                     faultedTaskContinuationWrapper.GetType().GetMethod("ContinuationMethod").MakeGenericMethod(resultType));
 
                 // invoke the "ContinueWith" with method on the original task
-                taskContinuation = closedGenericContinueWithMethod.Invoke(taskObject, continuationMethod);
+                taskContinuation = closedGenericContinueWithMethod.Invoke(methodInvocation.ReturnValue, continuationMethod);
             }
             else
             {
-                var task = (Task) taskObject;
+                var task = (Task) methodInvocation.ReturnValue;
                 return task.ContinueWith(t => {
                     if (t.IsFaulted)
                         exceptionHandler(t.Exception);
@@ -53,6 +52,32 @@ namespace NinjackeR.Pompidou.AOP
             }
 
             return taskContinuation;
+        }
+
+        private object GetTaskContinuationFromMethodInvocation_Terse(IMethodInvocation methodInvocation, Action<Exception> exceptionHandler)
+        {
+            if (methodInvocation.Method.ReturnType.IsGenericType && methodInvocation.Method.ReturnType.GetGenericTypeDefinition() == typeof(Task<>))
+            {
+                var faultedTaskContinuationWrapper = new FaultedTaskContinuationWrapper(exceptionHandler);
+                var argumentType = methodInvocation.Method.ReturnType.GetGenericArguments().Single();
+                return methodInvocation.Method.ReturnType
+                    .GetMethods().Where(m => m.Name == "ContinueWith" && m.ReturnType.IsGenericType && m.GetParameters().Count() == 1)
+                    .Single(m => m.GetParameters().Single().ParameterType.GetGenericArguments().First() == methodInvocation.Method.ReturnType)
+                    .MakeGenericMethod(argumentType)
+                    .Invoke(
+                        methodInvocation.ReturnValue,
+                        typeof(Func<,>).MakeGenericType(methodInvocation.Method.ReturnType, argumentType).CreateDelegate(
+                            faultedTaskContinuationWrapper,
+                            faultedTaskContinuationWrapper.GetType().GetMethod("ContinuationFunction").MakeGenericMethod(argumentType)));
+            }
+            else
+            {
+                var task = (Task) methodInvocation.ReturnValue;
+                return task.ContinueWith(t => {
+                    if (t.IsFaulted)
+                        exceptionHandler(t.Exception);
+                });
+            }
         }
     }
 }

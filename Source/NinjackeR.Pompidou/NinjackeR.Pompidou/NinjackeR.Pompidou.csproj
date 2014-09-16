@@ -41,9 +41,16 @@
   <ItemGroup>
     <Compile Include="AOP\FaultedTaskContinuationWrapper.cs" />
     <Compile Include="AOP\TaskContinuationBuilder.cs" />
+    <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="Exceptions\ExceptionDataBuilder.cs" />
+    <Compile Include="Exceptions\ExceptionExtensions.cs" />
+    <Compile Include="Exceptions\FullStackTraceFormattedDataException.cs" />
+    <Compile Include="Reflection\IMethodInvocation.cs" />
     <Compile Include="Reflection\MethodExtensions.cs" />
+    <Compile Include="Reflection\NamedValue.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="StringBuilderExtensions.cs" />
     <Compile Include="SummableEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

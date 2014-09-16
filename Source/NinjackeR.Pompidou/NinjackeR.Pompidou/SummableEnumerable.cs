@@ -8,9 +8,9 @@ namespace NinjackeR.Pompidou
     {
         private readonly IEnumerable<T> _underlying;
 
-        public static IEnumerable<T> operator +(SummableEnumerable<T> e1, IEnumerable<T> e2)
+        public static SummableEnumerable<T> operator +(SummableEnumerable<T> e1, IEnumerable<T> e2)
         {
-            return e1.Concat(e2);
+            return e1.Concat(e2).AsSummable();
         }
 
         public IEnumerator<T> GetEnumerator()
