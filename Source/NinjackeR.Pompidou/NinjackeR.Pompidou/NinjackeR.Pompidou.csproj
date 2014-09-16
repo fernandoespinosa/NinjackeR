@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\FaultedTaskContinuationWrapper.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="SummableEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
