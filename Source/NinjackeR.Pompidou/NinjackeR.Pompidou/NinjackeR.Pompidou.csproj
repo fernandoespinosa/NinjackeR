@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\FaultedTaskContinuationWrapper.cs" />
+    <Compile Include="AOP\TaskContinuationBuilder.cs" />
+    <Compile Include="Reflection\MethodExtensions.cs" />
+    <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="SummableEnumerable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

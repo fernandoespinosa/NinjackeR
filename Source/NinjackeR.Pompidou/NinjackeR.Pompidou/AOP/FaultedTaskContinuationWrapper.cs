@@ -5,17 +5,17 @@ namespace NinjackeR.Pompidou.AOP
 {
     public class FaultedTaskContinuationWrapper
     {
-        private readonly Action<Exception> _action;
+        private readonly Action<Exception> _exceptionHandler;
 
-        public FaultedTaskContinuationWrapper(Action<Exception> action)
+        public FaultedTaskContinuationWrapper(Action<Exception> exceptionHandler)
         {
-            _action = action;
+            _exceptionHandler = exceptionHandler;
         }
 
-        public virtual T ContinuationFunction<T>(Task<T> task)
+        public virtual T ContinuationMethod<T>(Task<T> task)
         {
             if (task.IsFaulted)
-                _action(task.Exception);
+                _exceptionHandler(task.Exception);
             return task.Result;
         }
     }
