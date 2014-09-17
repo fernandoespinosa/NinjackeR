@@ -7,7 +7,7 @@
 		<authors>$author$</authors>
 		<projectUrl>https://github.com/fernandoespinosa/NinjackeR</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>$description$</description>
+		<description>Code Hacks</description>
 	</metadata>
 	<files />
 </package>
