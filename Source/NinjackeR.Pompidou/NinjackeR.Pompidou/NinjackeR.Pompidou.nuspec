@@ -5,8 +5,8 @@
 		<title>NinjackeR.Pompidou</title>
 		<version>$version$</version>
 		<authors>$author$</authors>
-		<projectUrl>https://github.com/fernandoespinosa/NinjackeR</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<projectUrl>https://github.com/fernandoespinosa/NinjackeR</projectUrl>
 		<description>Maniacal Code</description>
 	</metadata>
 	<files />
