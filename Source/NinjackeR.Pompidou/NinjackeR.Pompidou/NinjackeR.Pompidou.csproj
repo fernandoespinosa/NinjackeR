@@ -42,9 +42,15 @@
     <Compile Include="AOP\FaultedTaskContinuationWrapper.cs" />
     <Compile Include="AOP\TaskContinuationBuilder.cs" />
     <Compile Include="CollectionExtensions.cs" />
-    <Compile Include="Exceptions\ExceptionDataBuilder.cs" />
+    <Compile Include="Eval.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\ExceptionDataBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\FullStackTraceFormattedDataException.cs" />
+    <Compile Include="GenericObjectExtensions.cs" />
     <Compile Include="Reflection\IMethodInvocation.cs" />
     <Compile Include="Reflection\MethodExtensions.cs" />
     <Compile Include="Reflection\NamedValue.cs" />
