@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<title>NinjackeR.Pompidou</title>
+		<version>$version$</version>
+		<authors>$author$</authors>
+		<projectUrl>https://github.com/fernandoespinosa/NinjackeR</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+	</metadata>
+	<files />
+</package>
