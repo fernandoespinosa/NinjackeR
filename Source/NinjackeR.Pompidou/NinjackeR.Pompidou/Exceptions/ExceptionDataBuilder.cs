@@ -1,5 +1,4 @@
 ﻿using NinjackeR.Pompidou.Reflection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +7,7 @@ namespace NinjackeR.Pompidou.Exceptions
 {
     public class ExceptionDataBuilder
     {
-        public object GetExceptionDataFromMethodInvocation(IMethodInvocation invocation, Exception exception)
+        public object GetExceptionDataFromMethodInvocation(IMethodInvocation invocation)
         {
             return (GetParameterArguments(invocation).AsSummable() + GetPropertyValues(invocation) + GetFieldValues(invocation)).ToDictionary(t => t, t => t.Value);
         }
