@@ -46,10 +46,12 @@
     <Compile Include="Eval.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BitExtensions.cs" />
     <Compile Include="Exceptions\ExceptionDataBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
+    <Compile Include="Exceptions\ExceptionFingerprint.cs" />
     <Compile Include="Exceptions\FullStackTraceFormattedDataException.cs" />
     <Compile Include="GenericObjectExtensions.cs" />
     <Compile Include="Reflection\IMethodInvocation.cs" />

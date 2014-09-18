@@ -12,7 +12,7 @@ namespace NinjackeR.Pompidou.Exceptions
 
         public override string ToString()
         {
-            return this.InnerException.FullStackTraceFormattedData();
+            return this.InnerException.FormatFullStackTraceData();
         }
     }
 }
